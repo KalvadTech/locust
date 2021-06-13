@@ -16,6 +16,6 @@ resource "scaleway_instance_server" "locust-worker" {
   name       = "locust-worker-${count.index}"
   ip_id      = scaleway_instance_ip.ip_workers[count.index].id
   image      = var.image_id
-  type       = "DEV1-S"
+  type       = "GP1-L"
   cloud_init = var.startup_script
 }
