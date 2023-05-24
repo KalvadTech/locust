@@ -1,20 +1,25 @@
 variable "tasks_url" {
-  type = string
+  type        = string
   description = "Where to download the tasks"
 }
 
 variable "locust_username" {
-  type = string
+  type        = string
   description = "Locust Username"
 }
 
 variable "locust_password" {
-  type = string
+  type        = string
   description = "Locust Password"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "workers_nb" {
   type    = number
   default = 5
+}
+
+variable "tags" {
+  type    = list(string)
+  default = []
 }
