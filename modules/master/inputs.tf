@@ -5,3 +5,7 @@ variable "startup_script" {
 variable "image_id" {
   type = string
 }
+
+variable "instance_type" {
+  type = string
+}

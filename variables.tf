@@ -1,8 +1,3 @@
-variable "tasks_url" {
-  type        = string
-  description = "Where to download the tasks"
-}
-
 variable "locust_username" {
   type        = string
   description = "Locust Username"
@@ -14,6 +9,11 @@ variable "locust_password" {
   sensitive   = true
 }
 
+variable "locust_file" {
+  type        = string
+  description = "Locust File"
+}
+
 variable "workers_nb" {
   type    = number
   default = 5
@@ -22,4 +22,19 @@ variable "workers_nb" {
 variable "tags" {
   type    = list(string)
   default = []
+}
+
+variable "master_instance_type" {
+  type    = string
+  default = null
+}
+
+variable "worker_instance_type" {
+  type    = string
+  default = null
+}
+
+variable "instance_type" {
+  type    = string
+  default = "GP1-S"
 }

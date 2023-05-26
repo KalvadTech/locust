@@ -9,7 +9,7 @@ runcmd:
   - pip install locust
   - echo '* - nofile 1000000' >> /etc/security/limits.conf
   - echo '* - nproc 1000000' >> /etc/security/limits.conf
-  - wget -O /home/locust/tasks.py ${TASKS_URL}
+  - echo ${LOCUST_FILE} | base64 -d | tee /home/locust/tasks.py
   - chown -R locust:locust /home/locust
   - |
     cat <<EOF > /lib/systemd/system/locust-master.service
