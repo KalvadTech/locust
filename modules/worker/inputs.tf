@@ -9,3 +9,7 @@ variable "image_id" {
 variable "workers_number" {
   type = number
 }
+
+variable "instance_type" {
+  type = string
+}
