@@ -6,14 +6,6 @@ terraform {
   }
   required_version = ">= 0.13"
 }
-variable "organization_id" {
-  type      = string
-  sensitive = true
-}
-variable "project_id" {
-  type      = string
-  sensitive = true
-}
 
 resource "scaleway_instance_ip" "ip_workers" {
   count      = var.workers_number

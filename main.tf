@@ -13,7 +13,7 @@ provider "scaleway" {
 }
 
 data "scaleway_instance_image" "locust" {
-  image_id = "ff48b73a-097d-4685-b996-d3ebe50636ea"
+  image_id = "81b9475d-e1b5-43c2-ac48-4c1a3b640686"
 }
 
 
@@ -25,7 +25,7 @@ locals {
 data "template_file" "startup-master" {
   template = file("${path.module}/startup-master.yaml")
   vars = {
-    LOCUST_FILE     = base64encode(var.locust_file)
+    LOCUST_FILE     = filebase64(var.locust_file)
     LOCUST_TYPE     = "master"
     LOCUST_USERNAME = var.locust_username
     LOCUST_PASSWORD = var.locust_password
@@ -38,7 +38,7 @@ data "template_file" "startup-master" {
 data "template_file" "startup-worker" {
   template = file("${path.module}/startup-worker.yaml")
   vars = {
-    LOCUST_FILE      = base64encode(var.locust_file)
+    LOCUST_FILE      = filebase64(var.locust_file)
     LOCUST_TYPE      = "worker"
     LOCUST_MASTER_IP = module.master.locust_master_ip
     LOCUST_TAGS      = local.locust_tags

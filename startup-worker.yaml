@@ -41,7 +41,7 @@ runcmd:
   - apt upgrade -y
   - groupadd -f locust
   - useradd -m locust -g locust || echo "user already exists"
-  - apt install -y htop emacs-nox wget iftop iotop python3-pip
+  - apt install -y htop emacs-nox wget iftop iotop python3.11-dev python3-pip python3.11-venv
   - pip install locust
   - echo '* - nofile 1000000' >> /etc/security/limits.conf
   - echo '* - nproc 1000000' >> /etc/security/limits.conf
