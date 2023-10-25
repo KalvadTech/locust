@@ -1,3 +1,12 @@
+variable "organization_id" {
+  type = string
+  sensitive = true
+}
+
+variable "project_id" {
+  type = string
+  sensitive = true
+}
 variable "locust_username" {
   type        = string
   description = "Locust Username"

@@ -6,12 +6,22 @@ terraform {
   }
   required_version = ">= 0.13"
 }
+variable "organization_id" {
+  type      = string
+  sensitive = true
+}
+variable "project_id" {
+  type      = string
+  sensitive = true
+}
 
 resource "scaleway_instance_ip" "ip_workers" {
-  count = var.workers_number
+  count      = var.workers_number
+  project_id = var.project_id
 }
 
 resource "scaleway_instance_server" "locust-worker" {
+  project_id = var.project_id
   count      = var.workers_number
   name       = "locust-worker-${count.index}"
   ip_id      = scaleway_instance_ip.ip_workers[count.index].id

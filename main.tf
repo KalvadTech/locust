@@ -4,6 +4,12 @@ terraform {
       source = "scaleway/scaleway"
     }
   }
+  required_version = ">= 0.13"
+}
+
+provider "scaleway" {
+  organization_id = var.organization_id
+  project_id      = var.project_id
 }
 
 data "scaleway_instance_image" "locust" {
@@ -40,18 +46,22 @@ data "template_file" "startup-worker" {
 }
 
 module "master" {
-  source         = "./modules/master"
-  startup_script = data.template_file.startup-master.rendered
-  image_id       = data.scaleway_instance_image.locust.id
-  instance_type  = var.master_instance_type != null ? var.master_instance_type : var.instance_type
+  organization_id = var.organization_id
+  project_id      = var.project_id
+  source          = "./modules/master"
+  startup_script  = data.template_file.startup-master.rendered
+  image_id        = data.scaleway_instance_image.locust.id
+  instance_type   = var.master_instance_type != null ? var.master_instance_type : var.instance_type
 }
 
 module "worker" {
-  source         = "./modules/worker"
-  startup_script = data.template_file.startup-worker.rendered
-  image_id       = data.scaleway_instance_image.locust.id
-  instance_type  = var.worker_instance_type != null ? var.worker_instance_type : var.instance_type
-  workers_number = var.workers_nb
+  organization_id = var.organization_id
+  project_id      = var.project_id
+  source          = "./modules/worker"
+  startup_script  = data.template_file.startup-worker.rendered
+  image_id        = data.scaleway_instance_image.locust.id
+  instance_type   = var.worker_instance_type != null ? var.worker_instance_type : var.instance_type
+  workers_number  = var.workers_nb
   depends_on = [
     module.master
   ]
