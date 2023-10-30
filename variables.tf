@@ -45,5 +45,5 @@ variable "worker_instance_type" {
 
 variable "instance_type" {
   type    = string
-  default = "GP1-S"
+  default = "PRO2-M"
 }
